@@ -1,0 +1,15 @@
+spring:
+  application:
+     name: edge-service
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: INFO
+    org.springframework.security: INFO
+
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie

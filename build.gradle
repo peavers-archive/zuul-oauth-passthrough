@@ -1,0 +1,55 @@
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath('io.spring.gradle:dependency-management-plugin:0.5.4.RELEASE')
+    }
+}
+
+subprojects {
+    buildscript {
+        ext {
+            springBootVersion = '1.5.8.RELEASE'
+        }
+    }
+
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'eclipse'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+
+    group = 'space.swordfish'
+    version = '1.0'
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    ext {
+        springCloudVersion = 'Dalston.SR4'
+    }
+
+    dependencies {
+        compile('org.springframework.cloud:spring-cloud-starter-eureka')
+        compile('com.github.jasminb:jsonapi-converter:0.8')
+        compile('org.projectlombok:lombok')
+
+        runtime('org.springframework.boot:spring-boot-devtools')
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+}
+
